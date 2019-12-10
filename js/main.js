@@ -1,5 +1,4 @@
 $(function () {
-
   const is_Snackbar = GLOBAL_CONFIG.Snackbar !== undefined ? true : false
 
   /**
@@ -283,31 +282,47 @@ $(function () {
    * 手機menu和toc按鈕點擊
    * 顯示menu和toc的sidebar
    */
-  function openMobileSidebar() {
+  function openMobileSidebar(name) {
     $('body').css('overflow', 'hidden')
     $('#body-wrap').css('transform', 'translateX(-250px)')
     $('#page-header').css('transform', 'translateX(-250px)')
     $('#page-header.fixed.visible').css('transform', 'translate3d(-250px, 100%, 0)')
     $('#rightside').css('transform', 'translateX(-288px)')
     $('#menu_mask').fadeIn();
+
+    if (name === 'menu'){
+      $(".toggle-menu").removeClass("close").addClass("open");
+      $('#mobile-sidebar-menus').css({'transform': 'translateX(-254px)'})
+    }
+
+    if (name === 'toc'){
+      $("#mobile-toc-button").removeClass("close").addClass("open");
+      $('#mobile-sidebar-toc').css('transform', 'translateX(-254px)')
+    }
   }
 
-  function closeMobileSidebar() {
+  function closeMobileSidebar(name) {
     $('body').css('overflow', '')
     $('#body-wrap').css('transform', '')
     $('#page-header').css('transform', '')
     $('#page-header.fixed.visible').css('transform', '')
     $('#rightside').css('transform', 'translateX(-38px)')
     $('#menu_mask').fadeOut();
+
+    if (name == 'menu'){
+      $(".toggle-menu").removeClass("open").addClass("close");
+      $('#mobile-sidebar-menus').css({'transform': 'translateX(0)'})
+    }
+
+    if (name == 'toc'){
+      $("#mobile-toc-button").removeClass("open").addClass("close");
+      $('#mobile-sidebar-toc').css('transform', '')
+    }
   }
 
   $('.toggle-menu').on('click', function () {
-    if ($(".toggle-menu").hasClass("close")) {
-      $(".toggle-menu").removeClass("close").addClass("open");
-      openMobileSidebar()
-      $('#mobile-sidebar-menus').css({
-        'transform': 'translateX(-254px)',
-      })
+    if ($(".toggle-menu").hasClass("close")) {      
+      openMobileSidebar('menu')     
       if ($('#toggle-sidebar').hasClass('on')) {
         $('body').css('padding-left', '0')
         $('#sidebar').css('transform', '')
@@ -316,20 +331,12 @@ $(function () {
   })
 
   $('#mobile-toc-button').on('click', function () {
-    if ($("#mobile-toc-button").hasClass("close")) {
-      $("#mobile-toc-button").removeClass("close").addClass("open");
-      openMobileSidebar()
-      $('#mobile-sidebar-toc').css('transform', 'translateX(-254px)')
-    }
+    if ($("#mobile-toc-button").hasClass("close")) openMobileSidebar(toc)
   })
 
   $('#menu_mask').on('click touchstart', function (e) {
     if ($(".toggle-menu").hasClass("open")) {
-      $(".toggle-menu").removeClass("open").addClass("close");
-      closeMobileSidebar()
-      $('#mobile-sidebar-menus').css({
-        'transform': 'translateX(0)',
-      })
+      closeMobileSidebar('menu')
       if ($('#toggle-sidebar').hasClass('on')) {
         setTimeout(function () {
           open_sidebar()
@@ -337,35 +344,22 @@ $(function () {
       }
     }
     if ($("#mobile-toc-button").hasClass("open")) {
-      $("#mobile-toc-button").removeClass("open").addClass("close");
-      closeMobileSidebar()
-      $('#mobile-sidebar-toc').css('transform', '')
+      closeMobileSidebar('toc')
     }
-
   })
 
   $(window).on('resize', function (e) {
     if (!$('.toggle-menu').is(':visible')) {
-      if ($(".toggle-menu").hasClass("open")) {
-        $(".toggle-menu").addClass("close").removeClass("open");
-        closeMobileSidebar()
-        $('#mobile-sidebar-menus').css({
-          'transform': 'translateX(0)',
-        })
-      }
+      if ($('.toggle-menu').hasClass('open')) closeMobileSidebar('menu')
     }
     if (!$('#mobile-toc-button').is(':visible')) {
-      if ($("#mobile-toc-button").hasClass("open")) {
-        $("#mobile-toc-button").removeClass("open").addClass("close");
-        closeMobileSidebar()
-        $('#mobile-sidebar-toc').css('transform', '')
-      }
+      if ($("#mobile-toc-button").hasClass("open")) closeMobileSidebar('toc')
     }
   })
 
   //點擊toc，收起sidebar
   $("#mobile-sidebar-toc a").on('click', function () {
-    mobile_toc_close()
+    closeMobileSidebar('toc')
   })
 
   /**
@@ -539,13 +533,13 @@ $(function () {
    * 閲讀模式
    */
   $("#readmode").click(function () {
+    var isDark = $(document.documentElement).attr('data-theme') === 'dark' ? true : false
+    $('body').toggleClass('read-mode')
+    $('#to_comment').toggleClass('is_invisible')
+
     if (Cookies.get("theme") == "dark") {
-      $(document.documentElement).attr('data-theme') == 'dark' ? $(document.documentElement).attr('data-theme', '') : $(document.documentElement).attr('data-theme', 'dark')
-      $('body').toggleClass('read-mode');
-      $('#to_comment').toggleClass('is_invisible');
-    } else {
-      $('body').toggleClass('read-mode');
-      $('#to_comment').toggleClass('is_invisible');
+      if (isDark) $(document.documentElement).attr('data-theme', '')
+      else $(document.documentElement).attr('data-theme', 'dark')
     }
   });
 
@@ -623,9 +617,8 @@ $(function () {
   /**
    * 複製時加上版權信息
    */
-  var copy_copyright_js = GLOBAL_CONFIG.copy_copyright_js
   var copyright = GLOBAL_CONFIG.copyright
-  if (copyright) {
+  if (copyright !== undefined) {
     document.body.oncopy = event => {
       event.preventDefault();
       let textFont, copyFont = window.getSelection(0).toString();
@@ -737,19 +730,19 @@ $(function () {
     var start_date = $("#webinfo_runtime_count").attr("start_date")
 
     function show_date_time() {
-      BirthDay = new Date(start_date);
-      today = new Date();
-      timeold = (today.getTime() - BirthDay.getTime());
-      msPerDay = 24 * 60 * 60 * 1000
-      e_daysold = timeold / msPerDay
-      daysold = Math.floor(e_daysold);
+      var BirthDay = new Date(start_date)
+      var today = new Date()
+      var timeold = (today.getTime() - BirthDay.getTime())
+      var msPerDay = 24 * 60 * 60 * 1000
+      var e_daysold = timeold / msPerDay
+      var daysold = Math.floor(e_daysold)
       $('.webinfo_runtime_count').text(daysold + " " + GLOBAL_CONFIG.runtime_unit)
     }
 
     var interval;
-    show_date_time();
-    clearInterval(interval);
-    interval = setInterval(show_date_time, 10000);
+    show_date_time()
+    clearInterval(interval)
+    interval = setInterval(show_date_time, 10000)
   }
 
   /**
@@ -976,18 +969,19 @@ $(function () {
   }
 
   if (GLOBAL_CONFIG.baiduPush) {
-    (function(){
+    (function () {
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
       if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
       }
       var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);})();
+      s.parentNode.insertBefore(bp, s);
+    })();
   }
+
 });
 
 /**
