@@ -1,29 +1,6 @@
 # hexo-theme-butterfly
 
-<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.1.0-blue"/></a>
-<a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
-<a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-3.0+-0e83c"/></a>
-<a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-6.0-blur"/></a>
-
-Demo:  https://demo.jerryc.me/ 
-
-JerryC:  https://jerryc.me/
-
-
-
-Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
-
-> If you update to hexo 4.2.0，it will be something's wrong
->
-> ```
-> Error: Cannot find module 'cheerio'
-> ```
->
-> please install cheerio
->
-> ```
-> npm install cheerio@0.22.0 --save
-> ```
+copy from hexo-theme-butterfly,see：https://github.com/jerryc127/hexo-theme-butterfly
 
 ## Installation
 
@@ -39,24 +16,7 @@ Dev branch:
 git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
 ```
 
-## Configuration
+# version
 
- Set theme in the hexo work folder's root config file `_config.yml`: 
-
-> theme: Butterfly
-
- If you don't have pug & stylus renderer, try this: 
-
-> npm install hexo-renderer-pug hexo-renderer-stylus
-
-## Documentation
-
- Documentation is [here](https://jerryc.me/posts/21cfbf15). it supports `zh-TW`
-
-## Screenshots
-
-![image](https://user-images.githubusercontent.com/16351105/58887365-1272f780-8718-11e9-9329-3292c6ba20d4.png)
-
-![](https://user-images.githubusercontent.com/16351105/58887457-3cc4b500-8718-11e9-9417-2bdea603c92e.png)
-
-![](https://user-images.githubusercontent.com/16351105/69338594-7d03f980-0c9e-11ea-8b64-7f165e6508e2.png)
+## 2020-03-09
+1. add yuque config
