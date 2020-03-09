@@ -7,13 +7,13 @@ copy from hexo-theme-butterfly,see：https://github.com/jerryc127/hexo-theme-but
 Stable branch:
 
 ```
-git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+git clone -b master https://github.com/khalidzk/hexo-theme-butterfly.git themes/Butterfly
 ```
 
 Dev branch:
 
 ```
-git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+git clone -b dev https://github.com/khalidzk/hexo-theme-butterfly.git themes/Butterfly
 ```
 
 # version
