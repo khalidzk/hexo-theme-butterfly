@@ -465,6 +465,7 @@ aside_mobile: true
 aside:
   position: right # left or right
   card_author: true
+  card_aplayer: true
   card_announcement: true
   card_recent_post: true
   card_categories: true
@@ -659,4 +660,8 @@ CDN:
 
 # 语雀配置
 yuque:
+  enable: false
+
+# 音乐播放器：需要安装hexo-tag-aplayer
+aplayer:
   enable: false
