@@ -656,3 +656,7 @@ CDN:
   ClickShowText: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/ClickShowText.js
 
   translate: /js/tw_cn.js
+
+# 语雀配置
+yuque:
+  enable: false
