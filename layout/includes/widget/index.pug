@@ -1,7 +1,7 @@
 if theme.aside.card_author
   include ./card_author.pug
 
-if theme.aside.card_aplayer
+if (theme.aside.card_aplayer && theme.aplayer.enable && theme.aplayer.card_aplayer && theme.aplayer.card_aplayer.id)
   include ./card_aplayer.pug
 
 if theme.aside.card_announcement

@@ -1,11 +1,5 @@
-<!-- require APlayer -->
-| <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-| <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-| <!-- require MetingJS -->
-| <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-|
-| <meting-js
-|     server="netease"
-|     type="playlist"
-|     id="60198">
-| </meting-js>
+.card-widget.card-aplayer
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css")
+  script(src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" charset="UTF-8")
+  script(src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" charset="UTF-8")
+  <meting-js server=theme.aplayer.card_aplayer.server type=theme.aplayer.card_aplayer.type id=theme.aplayer.card_aplayer.id order="list"></meting-js>
