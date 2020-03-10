@@ -663,9 +663,10 @@ yuque:
   enable: false
 
 # 音乐播放器：需要安装hexo-tag-aplayer
-aplayer:
-  enable: false # true时以下参数必填
+mmedia:
   card_aplayer:
     server: netease
     type: playlist
     id: 4906472284
+    order: list
+    theme: #ad7a86
