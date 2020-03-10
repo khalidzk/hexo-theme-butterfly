@@ -668,7 +668,7 @@ mmedia:
   card_aplayer:
     server: netease
     type: playlist
-    id: 4906472284
+    id: 4908003143
     order: list
     theme: '#ad7a86'
   exclude:

@@ -3,7 +3,6 @@ if theme.aside.card_author
 
 if (theme.aside.card_aplayer && theme.mmedia.card_aplayer && theme.mmedia.card_aplayer.id)
   if theme.mmedia.exclude
-    - console.log(page.path+","+theme.mmedia.exclude.indexOf(page.path))
     if (theme.mmedia.exclude.indexOf(page.path) < 0)
       include ./card_aplayer.pug
   else
