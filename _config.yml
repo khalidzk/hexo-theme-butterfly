@@ -662,11 +662,15 @@ CDN:
 yuque:
   enable: false
 
-# 音乐播放器：需要安装hexo-tag-mmedia
+# 媒体播放器：需要安装hexo-tag-mmedia
 mmedia:
+  enable: false
   card_aplayer:
     server: netease
     type: playlist
     id: 4906472284
     order: list
-    theme: #ad7a86
+    theme: '#ad7a86'
+  exclude:
+    - "music/index.html"
+    - "suiyi/index.html"

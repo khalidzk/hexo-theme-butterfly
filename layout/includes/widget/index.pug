@@ -2,7 +2,12 @@ if theme.aside.card_author
   include ./card_author.pug
 
 if (theme.aside.card_aplayer && theme.mmedia.card_aplayer && theme.mmedia.card_aplayer.id)
-  include ./card_aplayer.pug
+  if theme.mmedia.exclude
+    - console.log(page.path+","+theme.mmedia.exclude.indexOf(page.path))
+    if (theme.mmedia.exclude.indexOf(page.path) < 0)
+      include ./card_aplayer.pug
+  else
+    include ./card_aplayer.pug
 
 if theme.aside.card_announcement
   include ./card_announcement.pug
